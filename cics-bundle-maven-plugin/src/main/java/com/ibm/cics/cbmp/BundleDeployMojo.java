@@ -38,6 +38,9 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 import com.ibm.cics.bundle.deploy.BundleDeployException;
 import com.ibm.cics.bundle.deploy.BundleDeployHelper;
 
+/**
+ * Deploys a CICS bundle to the specified CICS region. A matching bundle definition must be provided in the CSD in advance.
+ */
 @Mojo(name = "deploy", requiresDependencyResolution = ResolutionScope.TEST, defaultPhase = LifecyclePhase.VERIFY)
 public class BundleDeployMojo extends AbstractMojo {
 	
@@ -47,6 +50,10 @@ public class BundleDeployMojo extends AbstractMojo {
 	@Parameter( defaultValue = "${settings}", readonly = true )
 	protected Settings settings;
 	
+	/**
+	 * The name of the bundle definition that will install this bundle. Must be present already in the CSD relating
+	 * to the configured cicsplex/region, and must be configured with the ...
+	 */
 	@Parameter(required = true)
 	private String bunddef;
 	

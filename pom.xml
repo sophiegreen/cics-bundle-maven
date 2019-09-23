@@ -57,6 +57,21 @@
     </extensions>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.8.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-module-markdown</artifactId>
+            <version>1.6</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <relativizeDecorationLinks>false</relativizeDecorationLinks>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
       </plugin>
@@ -130,6 +145,22 @@
             <serverId>ossrh</serverId>
             <stagingProfileId>2f4e6a35b09f57</stagingProfileId>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>site-maven-plugin</artifactId>
+          <version>0.12</version>
+          <configuration>
+            <message>Creating site for ${project.version}</message>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>site</goal>
+              </goals>
+              <phase>site</phase>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -221,6 +252,30 @@
           </plugins>
         </pluginManagement>
       </build>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>3.0.0</version>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>index</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-plugin-plugin</artifactId>
+            <version>3.6.0</version>
+            <configuration>
+              <goalPrefix>deploy</goalPrefix>
+            </configuration>
+          </plugin>
+        </plugins>
+      </reporting>
     </profile>
   </profiles>
 
