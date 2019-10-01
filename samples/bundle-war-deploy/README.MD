@@ -1,6 +1,6 @@
+# Bundle war deploy sample
 This sample demonstrates how you can add to an existing pom.xml of a war project that already exists.
 Everything within the demo-war directory would be an existing Maven project. The additional step to publish this to CICS is the additional plugin in the pom.xml: 
-
 
 ## Set Up
 # Have your system programmer create your bundle definition in CSD
